@@ -1,0 +1,22 @@
+Halloween Prices Prediction:
+Name: Joshua Okechukwu
+Position:11th
+Language Used:Python
+Algorithm used:Support vector Machine (SVM)with Linear Kernel
+Libraries: Scikit-Learn,Pandas and Numpy
+Matplotlib and Seaborn were used for Visualization
+In solving this regression problem i took the following steps:
+Columns such as Demand,Product_Category,Loyalty_Customer,Stall_no, were dropped
+Instick date was parsed using a custom function. The function first extracts the values from the dataframe as a list,then for each value it trims the it to its year month and day discarding mins,hours and seconds. This is then split using ('-') as sep,then the month is divided by 12 while the Day is divided by 365.All these are then added together for each instance and subtracted from 2020(This was done to shrink the contribution  and weight of This feature to our final model because it is less informative)
+The rows(entries) in the training data which corresponding Selling_Price were missing were dropped.
+Missing entries in Discount_avail column was filled with 0.0 while every other remaining columns with missing number were filled with their mean(s)
+Charges_2(%) Which was originally percentage was converted to the percentage of each charge_2(%) of its corresponding Maximum_Price
+Some features were extracted such as:
+ 1. Mean Price: from the average of Minimum and Maximum price
+ 2.Custom Price: The addition of Charges_1 and Charges_2(after step 8 above) and Mean Price
+charges_1 due to its week corellation with the target value was then converted to its percentage of the maximum values.
+Some Target values had negative entries, the absolute of these values were taken
+Columns such as Mean_price,Minimum_price,Instock_,date,market_category,maximum_preice,custom_price,charges_2(%) were converted to the log of their values to base 10
+the log to base 10 was taken for target values
+Standard scaler was used to scale the data from sklearn preprocessing
+Support vector Regressor from svm class in sklearn using C=10, and epsilon=0.01 and linear kernel was used to train the data.
